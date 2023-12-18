@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>勤務地登録画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>勤務地登録</h1>
+</div>
+<form method="post" th:action="@{/place}" th:object="${placeForm}">
+    <div class="parent">
+        <table>
+            <tr>
+                <th>日付</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{w_date}"/>
+                        <span th:if="${#fields.hasErrors('w_date')}" th:errors="*{w_date}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>勤務地</th>
+                <td>
+                    <div class="bottom">
+                        <div th:each="item : ${radioPlace}">
+                            <input type="radio" name="radioPlace"
+                                   th:text="${item.key}"
+                                   th:value="${item.value}"
+                                   th:field="*{place}">
+                            </input>
+                            <span class="text-danger" th:if="${#fields.hasErrors('place')}" th:errors="*{place}">
+                    </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="parent">
+        <button class="btn-square-shadow" type="submit">登録</button>
+    </div>
+    <div class="parent">
+        <a th:href="@{'/home'}">ホームに戻る</a>
+    </div>
+</form>
+</body>
+</html>

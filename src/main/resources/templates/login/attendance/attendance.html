@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>勤怠登録画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>勤怠登録</h1>
+</div>
+<div class="parent">
+    <div id="view_clock"></div>
+</div>
+<div class="parent">
+    <form method="post" th:action="@{/attendance}" th:object="${attendanceForm}">
+        <div class="parent">
+            <table>
+                <tr>
+                    <th>日付</th>
+                    <td>
+                        <div class="bottom">
+                            <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{a_date}"/>
+                            <span th:if="${#fields.hasErrors('a_date')}" th:errors="*{a_date}"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="parent">
+            <button class="btn-square-shadow" type="submit" name="start">出勤</button>
+            <button class="btn-square-shadow" type="submit" name="end">退勤</button>
+        </div>
+        <div class="parent">
+            <a th:href="@{'/home'}">ホームに戻る</a>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

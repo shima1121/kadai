@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>勤怠状況一覧画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>勤怠状況一覧</h1>
+</div>
+<div class="parent">
+    <table class="design01">
+        <tr>
+            <th>日付</th>
+            <th>出勤時間</th>
+            <th>退勤時間</th>
+            <th></th>
+        </tr>
+        <tr th:each="attendance : ${attendanceList}">
+            <td th:text="${#dates.format(attendance.a_date, 'YYYY/MM/dd')}"></td>
+            <td th:text="${#dates.format(attendance.w_hours, 'YYYY/MM/dd HH:mm:ss')}"></td>
+            <td th:text="${#dates.format(attendance.c_time, 'YYYY/MM/dd HH:mm:ss')}"></td>
+            <td>
+                <!-- ユーザー詳細画面へのリンク(動的URL) -->
+                <a class="btn btn-primary" th:href="@{'/attendanceDetail/' + ${attendance.id}}">
+                    変更
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="parent">
+    <!-- ユーザー一覧の件数 -->
+    <label th:text=" '合計：' + ${ListCount} + '件' "></label><br/>
+</div>
+<div class="parent">
+    <!-- 更新・削除処理の結果表示用 -->
+    <label class="text-info" th:text="${result}">結果表示</label><br/>
+</div>
+<div class="parent">
+    <a th:href="@{'/home'}">ホームに戻る</a>
+</div>
+</body>
+</html>

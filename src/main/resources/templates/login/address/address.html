@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>連絡先画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>連絡先登録</h1>
+</div>
+<form method="post" th:action="@{/address}" th:object="${addressForm}">
+    <div class="parent">
+        <table>
+            <tr>
+                <th>名前</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" th:field="*{name}"/>
+                        <span class="text-danger"
+                              th:if="${#fields.hasErrors('name')}"
+                              th:errors="*{name}">
+                    </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" th:field="*{phone}"/>
+                        <span class="text-danger"
+                              th:if="${#fields.hasErrors('phone')}"
+                              th:errors="*{phone}">
+                    </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Eメールアドレス</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" th:field="*{address}"/>
+                        <span class="text-danger"
+                              th:if="${#fields.hasErrors('address')}"
+                              th:errors="*{id}">
+                    </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="parent">
+        <button class="btn-square-shadow" type="submit">登録</button>
+    </div>
+</form>
+<div class="parent">
+    <a th:href="@{'/home'}">ホームに戻る</a>
+</div>
+</body>
+</html>

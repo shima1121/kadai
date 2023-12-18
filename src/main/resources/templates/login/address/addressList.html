@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>連絡先一覧画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>連絡先一覧</h1>
+</div>
+<div class="parent">
+    <table class="design01">
+        <tr>
+            <th>名前</th>
+            <th>電話番号</th>
+            <th>Eメールアドレス</th>
+            <th></th>
+        </tr>
+        <tr th:each="address : ${addressList}">
+            <td th:text="${address.name}"></td>
+            <td th:text="${address.phone}"></td>
+            <td th:text="${address.address}"></td>
+            <td>
+                <!-- ユーザー詳細画面へのリンク(動的URL) -->
+                <a class="btn btn-primary" th:href="@{'/addressDetail/' + ${address.name}}">
+                    変更
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="parent">
+    <!-- 更新・削除処理の結果表示用 -->
+    <label class="text-info" th:text="${result}">結果表示</label><br/>
+</div>
+<div class="parent">
+    <a th:href="@{'/home'}">ホームに戻る</a>
+</div>
+</body>
+</html>

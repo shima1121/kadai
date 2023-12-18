@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>SignUp</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>ユーザー登録画面</h1>
+</div>
+<form method="post" th:action="@{/signup}" th:object="${signupForm}">
+    <div class="parent">
+        <table>
+            <tr>
+                <th>ユーザID</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" th:field="*{id}"/>
+                        <span class="text-danger"
+                              th:if="${#fields.hasErrors('id')}"
+                              th:errors="*{id}">
+                            </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td>
+                    <div class="bottom">
+                        <input type="password" class="form-control" th:field="*{password}"/>
+                        <span class="text-danger"
+                              th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}">
+                            </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="parent">
+        <button class="btn-square-shadow" type="submit">ユーザー登録</button>
+    </div>
+</form>
+<div class="parent">
+    <a th:href="@{'/login'}">ログイン画面に戻る</a>
+</div>
+</body>
+</html>

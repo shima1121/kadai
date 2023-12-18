@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>連絡先一覧画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>連絡先一覧</h1>
+</div>
+<div class="bottom">
+    <div class="parent">
+        <table class="design01">
+            <tr>
+                <th>日付</th>
+                <th>出勤時間</th>
+                <th>退勤時間</th>
+                <th>勤務地</th>
+            </tr>
+            <tr th:each="all : ${allList}">
+                <td th:text="${#dates.format(all.a_date, 'YYYY/MM/dd')}"></td>
+                <td th:text="${#dates.format(all.w_hours, 'YYYY/MM/dd HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(all.c_time, 'YYYY/MM/dd HH:mm:ss')}"></td>
+                <td th:text="${all.place}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="parent">
+    <a th:href="@{'/home'}">ホームに戻る</a>
+</div>
+</body>
+</html>

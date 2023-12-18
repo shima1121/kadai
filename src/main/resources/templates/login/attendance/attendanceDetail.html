@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>勤怠削除画面</title>
+    <link rel="stylesheet" th:href="@{/cs/main.css}"/>
+</head>
+<body>
+<div class="parent">
+    <h1>勤怠削除</h1>
+</div>
+<form method="post" th:action="@{/attendanceDetail}" th:object="${attendanceForm}">
+    <div class="parent">
+        <table>
+            <tr>
+                <th>日付</th>
+                <td>
+                    <div class="bottom">
+                        <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{a_date}"
+                               readonly="readonly"/>
+                        <span th:if="${#fields.hasErrors('a_date')}" th:errors="*{a_date}"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="parent">
+        <!-- 削除ボタン -->
+        <button class="btn-square-shadow" type="submit" name="delete">
+            削除
+        </button>
+    </div>
+</form>
+<div class="parent">
+    <a th:href="@{'/home'}">ホームに戻る</a>
+</div>
+</body>
+</html>
